@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: live HTTP probes of the Lendo web and API hosts
+summary: >-
+  No /.well-known/ discovery documents are published on either lendo.sa or
+  api.lendo.sa. The API host returns 401 for every /.well-known/ path because
+  the whole surface sits behind bearer authentication, so absence there is not
+  distinguishable from an authorization failure. The marketing host returns a
+  hard 404 (verified against a control path), so the misses there are real.
+  Lendo does publish a /llms.txt on the marketing host, captured verbatim at
+  llms/lendo-llms.txt.
+hosts:
+- host: https://lendo.sa
+  control_path_status: 404
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/lendo-llms.txt
+- host: https://api.lendo.sa
+  note: all paths gated behind bearer auth; 401 is the default response
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+security_txt: null

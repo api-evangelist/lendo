@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probes of https://api.lendo.sa
+format: proprietary-json
+format_note: >-
+  Not RFC 9457. Lendo returns a proprietary envelope
+  {message, status, responseTimestamp} with Content-Type application/json,
+  not application/problem+json. There is no published error reference; the
+  entries below are the error responses actually observed from the production
+  host by an unauthenticated caller.
+envelope:
+  message: string or {ar, en} localized object
+  status: FAILURE
+  responseTimestamp: DD-MM-YYYYTHH:MM:SS.sssZ (present on some errors only)
+problems:
+- status: 401
+  title: 'Unauthorized: Authentication token is missing or invalid'
+  localized:
+    en: 'Unauthorized: Authentication token is missing or invalid'
+    ar: 'Unauthorized: Authentication token is missing or invalid'
+  remediation: Present a valid bearer token. Token issuance is not publicly documented.
+  observed_on:
+  - https://api.lendo.sa/
+  - https://api.lendo.sa/openapi.json
+  - https://api.lendo.sa/swagger
+  - https://api.lendo.sa/docs
+- status: 403
+  title: 'Forbidden: This endpoint is not available in production'
+  remediation: >-
+    The route exists but is disabled in the production environment. Observed on
+    the springdoc-openapi documentation routes, which confirms an internal
+    OpenAPI definition that is not publicly exposed.
+  observed_on:
+  - https://api.lendo.sa/v3/api-docs
+  - https://api.lendo.sa/swagger-ui.html
+coverage_note: >-
+  This catalog is limited to unauthenticated responses. The authenticated error
+  surface cannot be enumerated without credentials, and Lendo publishes no error
+  code reference.

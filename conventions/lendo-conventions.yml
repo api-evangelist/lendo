@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probes of https://api.lendo.sa (no public API documentation exists)
+scope: >-
+  Lendo publishes no developer portal, API reference or OpenAPI definition. Every
+  convention recorded here was observed directly from unauthenticated responses of
+  the production host https://api.lendo.sa. It is an accurate record of what the
+  API returns to an anonymous caller, not a documented provider contract, and it
+  should not be treated as a stable interface.
+authentication:
+  style: bearer-token
+  documented: false
+  evidence: >-
+    GET https://api.lendo.sa/ returns 401 with the message
+    "Unauthorized: Authentication token is missing or invalid", indicating a
+    bearer/JWT token requirement. No token issuance flow, OAuth authorization
+    server or API key programme is published.
+  well_known_oauth: not published (see well-known/lendo-well-known.yml)
+error_envelope:
+  content_type: application/json;charset=UTF-8
+  shape:
+    message: string OR object keyed by locale
+    status: string enum observed as FAILURE
+    responseTimestamp: string, observed format DD-MM-YYYYTHH:MM:SS.sssZ
+  localization: >-
+    Some errors return `message` as a bilingual object with `ar` and `en` keys;
+    others return `message` as a plain English string. Both shapes were observed
+    on the same host, so clients must handle either.
+  rfc9457: false
+  examples:
+  - status_code: 401
+    body: '{"message":{"ar":"Unauthorized: Authentication token is missing or invalid","en":"Unauthorized:
+      Authentication token is missing or invalid"},"status":"FAILURE","responseTimestamp":"20-07-2026T00:31:25.654Z"}'
+  - status_code: 403
+    body: '{"message":"Forbidden: This endpoint is not available in production","status":"FAILURE"}'
+idempotency:
+  supported: unknown
+  evidence: >-
+    No idempotency key header or documentation was observed. Not asserted, and no
+    Idempotency pointer is emitted in apis.yml.
+pagination:
+  style: unknown
+  evidence: no readable operations
+versioning:
+  scheme: unknown
+  evidence: >-
+    No version segment was observable on the gated root. The presence of a
+    /v3/api-docs route suggests a springdoc-openapi version path rather than an
+    API version.
+rate_limiting:
+  signalled: false
+  evidence: no RateLimit-* or X-RateLimit-* headers on 401/403 responses
+request_tracing:
+  request_id_header: null
+  evidence: no correlation/request id header returned on error responses
+response_headers_observed:
+- Strict-Transport-Security: max-age=31536000; includeSubDomains
+- X-Content-Type-Options: nosniff
+- X-XSS-Protection: 1; mode=block
+- X-Frame-Options: SAMEORIGIN
+- Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+- Vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+platform_fingerprint: >-
+  Response header set and the /v3/api-docs route are consistent with a Java
+  Spring Boot service using Spring Security and springdoc-openapi. The
+  springdoc endpoint is explicitly disabled in production
+  ("Forbidden: This endpoint is not available in production"), which means an
+  OpenAPI definition exists internally but is not exposed publicly.
+cross_links:
+- errors/lendo-problem-types.yml
+- conformance/lendo-conformance.yml
+- security/lendo-domain-security.yml
+- well-known/lendo-well-known.yml

@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+probe: false
+source: https://trust.lendo.sa/
+url: https://trust.lendo.sa/
+platform: SafeBase (by Drata)
+certifications:
+- SAMA CSF
+certifications_note: >-
+  Lendo's trust center names the Saudi Central Bank Cybersecurity Framework
+  (SAMA CSF) as its compliance framework. No SOC 2, ISO 27001, PCI DSS, HIPAA
+  or FedRAMP attestation is listed on the public landing page. Lendo is
+  separately licensed by SAMA as a debt-crowdfunding platform
+  (License No. 61/A SH/202203).
+control_areas:
+- Compliance
+- Product Security
+- Data Security
+- App Security
+- Legal
+- Access Control
+- Endpoint Security
+- Network Security
+- Corporate Security
+- Policies
+- Incident Response
+- Risk Management
+- Asset Management
+- Training
+- Change Management
+- Physical and Environmental Security
+- Continuous Monitoring
+controls_highlighted:
+- audit logging
+- multi-factor authentication
+- data access monitoring
+- data backups
+- encryption in transit
+- penetration testing
+- secure SDLC
+- vulnerability management
+- remote access and VPN controls
+- user access review
+- endpoint protection, disk encryption, EDR
+- DLP, firewall, IDS/IPS
+- email protection and employee security training
+- forensic retainer and SOC
+- SIEM continuous monitoring
+gaps:
+- No public subprocessor list on the landing page.
+- No security contact or vulnerability disclosure mechanism published.
+- No third-party audit reports (SOC 2 / ISO 27001) offered under NDA request.
+evidence:
+- source: https://trust.lendo.sa/
+  keywords:
+  - trust center
+  - sama csf
+  - compliance
+  - penetration testing
+  - vulnerability management

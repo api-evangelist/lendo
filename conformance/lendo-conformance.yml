@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://trust.lendo.sa/, https://www.lendo.sa/en/about,
+  https://www.lendo.sa/en/shariah-compliance, https://lendo.sa/llms.txt,
+  and live probes of https://api.lendo.sa
+scope_note: >-
+  Lendo publishes no OpenAPI, so no technical standard can be derived from a
+  spec. Regulatory and domain conformance below is taken from Lendo's own
+  published claims; technical standards are marked from live probe evidence or
+  left unknown rather than asserted.
+standards:
+- id: sama-license
+  conforms: true
+  evidence: >-
+    Licensed by the Saudi Central Bank (SAMA) as a debt-crowdfunding platform,
+    License No. 61/A SH/202203, capital SAR 50M. Published on lendo.sa and in
+    lendo.sa/llms.txt.
+- id: sama-csf
+  conforms: true
+  evidence: SAMA Cybersecurity Framework named as the compliance framework on https://trust.lendo.sa/
+- id: shariah-compliance
+  conforms: true
+  evidence: >-
+    Sharia-certified Murabaha-based products with no interest-based
+    transactions; documented at https://www.lendo.sa/en/shariah-compliance
+- id: soc2
+  conforms: false
+  evidence: not listed on the trust center
+- id: iso-27001
+  conforms: false
+  evidence: not listed on the trust center
+- id: pci-dss
+  conforms: false
+  evidence: not listed on the trust center
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No OAuth authorization server metadata at /.well-known/oauth-authorization-server
+    (404 on the web host); no OAuth flow documented. Auth is an opaque bearer token.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on lendo.sa
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a proprietary {message, status, responseTimestamp} envelope with
+    Content-Type application/json, not application/problem+json
+    (see errors/lendo-problem-types.yml)
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404
+- id: rfc8594-sunset-header
+  conforms: unknown
+  evidence: no observable operations
+- id: llmstxt
+  conforms: true
+  evidence: https://lendo.sa/llms.txt returns 200; captured verbatim at llms/lendo-llms.txt
+- id: hsts
+  conforms: true
+  evidence: >-
+    Strict-Transport-Security max-age=31536000 on lendo.sa, www.lendo.sa and
+    api.lendo.sa (see security/lendo-domain-security.yml)
+- id: dnssec
+  conforms: false
+  evidence: no DNSSEC on lendo.sa
+- id: dmarc
+  conforms: true
+  evidence: DMARC present with policy quarantine
