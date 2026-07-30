@@ -1,7 +1,31 @@
 aid: lendo
 name: Lendo
-description: Lendo is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Lendo (شركة ليندو السعودية للتمويل) is a Riyadh-based Saudi fintech licensed
+  by the Saudi Central Bank (SAMA, License No. 61/A SH/202203, capital SAR 50M) that
+  operates the Kingdom''s first SAMA-licensed Sharia-compliant debt-based crowdfunding
+  platform. Lendo connects small and medium enterprises needing liquidity with retail
+  and institutional investors, offering invoice financing, working capital financing,
+  purchase-order financing and term loans funded within 48 hours of document completion,
+  alongside government-backed programs with Monshaat, SME Bank, the Tourism Development
+  Fund, the Cultural Development Fund, Modon and the Kafala guarantee scheme. On the
+  investor side it runs tiered retail products (Basic, Premium, High Net Worth), an
+  auto-invest engine and an A-D credit scoring engine, reporting SAR 4.5B+ in cumulative
+  financing across 10,000+ funded deals at a 2.93% overall default rate. Lendo publishes
+  no public developer program, API documentation or SDKs; its production API host is
+  authentication-gated and its machine-readable public surface is limited to an llms.txt
+  and a SafeBase-hosted trust center.'
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/694bacb635847d327e4bb887/6976655d086075b08122ba96_OG%20Image.png
 url: https://raw.githubusercontent.com/api-evangelist/lendo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +35,38 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Financial Services
+- Fintech
+- Lending
+- Crowdfunding
+- Invoice Financing
+- SME Finance
+- Islamic Finance
+- Saudi Arabia
+- Middle East
+apis:
+- aid: lendo:platform-api
+  name: Lendo Platform API
+  description: 'Production API host backing the Lendo web and mobile applications.
+    Discovered by probe at https://api.lendo.sa - it is live and returns a structured
+    bilingual (Arabic/English) JSON envelope, but every path responds 401/403 without
+    a bearer token. Lendo publishes no public developer portal, API reference, OpenAPI
+    definition or partner integration documentation, so this API is recorded as a private,
+    undocumented surface rather than a consumable public API.'
+  humanURL: https://www.lendo.sa/en
+  baseURL: https://api.lendo.sa
+  tags:
+  - Lending
+  - Fintech
+  - Private API
+  properties:
+  - type: Conventions
+    url: conventions/lendo-conventions.yml
+  - type: ErrorCatalog
+    url: errors/lendo-problem-types.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +75,42 @@ maintainers:
 common:
 - type: Website
   url: https://lendo.sa
+- type: DeveloperPortal
+  url: https://www.lendo.sa/en/help-center
+- type: Documentation
+  url: https://www.lendo.sa/en/help-center
+- type: HelpCenter
+  url: https://www.lendo.sa/en/help-center
+- type: Support
+  url: https://lendo.freshdesk.com/en/support/tickets/new
+- type: Blog
+  url: https://www.lendo.sa/en/blog
+- type: Pricing
+  url: https://www.lendo.sa/en/pricing
+- type: SignUp
+  url: https://app.lendo.sa/register
+- type: Login
+  url: https://app.lendo.sa/
+- type: TermsOfService
+  url: https://www.lendo.sa/en/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.lendo.sa/en/privacy-policy
+- type: Compliance
+  url: https://trust.lendo.sa/
+- type: TrustCenter
+  url: security/lendo-trust-center.yml
+- type: LLMsTxt
+  url: llms/lendo-llms.txt
+- type: Conventions
+  url: conventions/lendo-conventions.yml
+- type: ErrorCatalog
+  url: errors/lendo-problem-types.yml
+- type: Conformance
+  url: conformance/lendo-conformance.yml
+- type: DomainSecurity
+  url: security/lendo-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
