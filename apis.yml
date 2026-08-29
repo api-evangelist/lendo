@@ -14,6 +14,17 @@ description: 'Lendo (شركة ليندو السعودية للتمويل) is a R
   no public developer program, API documentation or SDKs; its production API host is
   authentication-gated and its machine-readable public surface is limited to an llms.txt
   and a SafeBase-hosted trust center.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
