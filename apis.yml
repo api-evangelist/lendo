@@ -49,7 +49,7 @@ created: '2026-07-17'
 modified: '2026-07-19'
 tags:
 - Company
-- Financial-Services
+- Financial Services
 - Fintech
 - Lending
 - Crowdfunding
@@ -69,6 +69,7 @@ tags_raw:
 - Islamic Finance
 - Saudi Arabia
 - Middle East
+- Financial-Services
 apis:
 - aid: lendo:platform-api
   name: Lendo Platform API
